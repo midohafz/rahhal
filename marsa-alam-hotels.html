@@ -1,55 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-   <!-- حاوية زر الترجمة العصري -->
-<div class="custom-translate-container" style="text-align: left; margin: 15px 0;">
-    <div class="lang-dropdown">
-        <button class="globe-btn" style="background: #1e3c72; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            🌐 Languages / Языки ▾
-        </button>
-        <div class="lang-menu" style="display: none; position: absolute; background: white; min-width: 150px; box-shadow: 0px 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 100; overflow: hidden; margin-top: 5px; border: 1px solid #ddd;">
-            <button onclick="changeLanguage('en')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">🇬🇧 English</button>
-            <button onclick="changeLanguage('ru')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">🇷🇺 Русский</button>
-            <button onclick="changeLanguage('de')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">🇩🇪 Deutsch</button>
-            <button onclick="changeLanguage('fr')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">🇫🇷 Français</button>
-            <button onclick="changeLanguage('zh-CN')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">🇨🇳 中文</button>
-            <button onclick="changeLanguage('ar')" style="display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: bold; color: #333; border-top: 1px solid #eee;">🇪🇬 العربية</button>
-        </div>
-    </div>
-</div>
-
-<!-- عنصر ترجمة جوجل المخفي (ضروري لتشغيل محرك الترج مة الخلفي) -->
-<div id="google_translate_element" style="display: none;"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'ar', autoDisplay: false}, 'google_translate_element');
-}
-
-// دالة تفاعلية لتغيير اللغة بسلاسة عند الضغط من القائمة العصرية
-function changeLanguage(langCode) {
-  var selectField = document.querySelector(".goog-te-combo");
-  if (selectField) {
-    selectField.value = langCode;
-    selectField.dispatchEvent(new Event('change'));
-  }
-}
-
-// إظهار وإخفاء القائمة عند النقر على أيقونة الكرة الأرضية
-document.querySelector('.globe-btn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    var menu = this.nextElementSibling;
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-});
-
-window.addEventListener('click', function() {
-    var menus = document.querySelectorAll('.lang-menu');
-    menus.forEach(function(menu) {
-        menu.style.display = 'none';
-    });
-});
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
- 
+<script src="translator.js"></script> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
