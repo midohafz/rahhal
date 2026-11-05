@@ -20,7 +20,7 @@
             line-height: 1.6; 
         }
 
-        /* شريط اللغات العصري المصغر */
+        /* شريط اللغات العصري مع قائمة تفاعلية للكرة الأرضية */
         .lang-bar { 
             background: #111; 
             padding: 8px 25px; 
@@ -31,18 +31,63 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
-        .lang-icon {
-            color: #fff;
-            font-size: 15px;
-            margin-left: 4px;
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .globe-btn {
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .globe-btn:hover {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #222;
+            min-width: 100px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+        .lang-menu button {
+            color: #ccc;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: right;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .lang-menu button:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .lang-dropdown:hover .lang-menu {
+            display: block;
         }
         .lang-btn { 
             background: #222; 
             color: #ccc; 
             border: 1px solid #444; 
-            padding: 4px 10px; 
+            padding: 5px 12px; 
             cursor: pointer; 
             border-radius: 4px; 
             font-size: 12px;
@@ -130,7 +175,7 @@
             background: var(--secondary-color);
         }
 
-        /* تصغير حجم بطاقات المدن لتصبح متناسقة وأنيقة */
+        /* تنسيق الشبكة وبطاقات المدن */
         .cities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -149,6 +194,33 @@
         .city-content { padding: 15px; flex-grow: 1; }
         .city-content h3 { color: var(--primary-color); margin-top: 0; font-size: 18px; }
         .city-content p { font-size: 14px; color: #555; line-height: 1.5; }
+
+        /* مساحة إعلانية مميزة لشركات السياحة */
+        .ad-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px dashed var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .ad-card h3 { color: #d84315; margin-top: 0; font-size: 18px; }
+        .ad-card p { font-size: 13px; color: #555; margin-bottom: 15px; }
+        .btn-ad {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-ad:hover { background-color: #e64a19; }
 
         .btn-booking { 
             display: block; 
@@ -197,12 +269,16 @@
 </head>
 <body>
 
-    <!-- شريط اللغات مع رمز الكرة الأرضية -->
+    <!-- شريط اللغات مع الكرة الأرضية وقائمة اللغات الأجنبية -->
     <div class="lang-bar">
-        <span class="lang-icon">🌐</span>
-        <button class="lang-btn active" onclick="switchLang('ar', event)">AR</button>
-        <button class="lang-btn" onclick="switchLang('en', event)">EN</button>
-        <button class="lang-btn" onclick="switchLang('ru', event)">RU</button>
+        <button class="lang-btn active" onclick="switchLang('ar', event)">العربية (AR)</button>
+        <div class="lang-dropdown">
+            <button class="globe-btn">🌐 ▾</button>
+            <div class="lang-menu">
+                <button onclick="switchLang('en', event)">English (EN)</button>
+                <button onclick="switchLang('ru', event)">Русский (RU)</button>
+            </div>
+        </div>
     </div>
 
     <!-- الهيدر -->
@@ -289,6 +365,12 @@
                         <p>أبراج العلمين، الشواطئ الفيروزية الرائعة.</p>
                     </div>
                     <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 دليل فنادق العلمين</a>
+                </div>
+                <!-- مساحة إعلانية لشركات السياحة بجوار العلمين -->
+                <div class="ad-card">
+                    <h3>📢 مساحتك الإعلانية هنا</h3>
+                    <p>هل تمتلك شركة سياحة أو تنقل؟ اعرض خدماتك لآلاف السياح يومياً عبر منصة "رحّال".</p>
+                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">تواصل معنا للإعلان</a>
                 </div>
             </div>
 
@@ -401,6 +483,12 @@
                     </div>
                     <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 El Alamein Hotels Guide</a>
                 </div>
+                <!-- Advertisement Space -->
+                <div class="ad-card">
+                    <h3>📢 Your Ad Here</h3>
+                    <p>Own a travel agency or transport service? Showcase your offers to thousands of tourists daily.</p>
+                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">Contact Us to Advertise</a>
+                </div>
             </div>
 
             <div class="legal-section">
@@ -484,6 +572,12 @@
                     </div>
                     <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Аламейна</a>
                 </div>
+                <!-- Рекламное пространство -->
+                <div class="ad-card">
+                    <h3>📢 Ваша реклама здесь</h3>
+                    <p>У вас есть туристическое агентство? Предложите свои услуги тысячам туристов ежедневно.</p>
+                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">Связаться с нами для рекламы</a>
+                </div>
             </div>
 
             <div class="legal-section">
@@ -504,7 +598,12 @@
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(lang).classList.add('active');
             if (event && event.target) {
-                event.target.classList.add('active');
+                // إذا كان الزر داخل القائمة المنسدلة للكرة الأرضية
+                if(event.target.closest('.lang-menu')) {
+                    document.querySelector('.globe-btn').classList.add('active');
+                } else {
+                    event.target.classList.add('active');
+                }
             }
         }
 
