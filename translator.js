@@ -5,7 +5,7 @@
     googleScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     document.head.appendChild(googleScript);
 
-    // 2. دالة تهيئة جوجل ترجمة (مخفية لمنع الشريط العشوائي)
+    // 2. تهيئة محرك الترجمة
     window.googleTranslateElementInit = function() {
         new google.translate.TranslateElement({
             pageLanguage: 'ar',
@@ -15,9 +15,8 @@
         }, 'google_translate_element');
     };
 
-    // 3. دالة تغيير اللغة عبر الأزرار المخصصة
+    // 3. دالة تبديل اللغة
     window.changelang = function(lang) {
-        var frame = document.querySelector('.goog-te-banner-frame');
         var select = document.querySelector('.goog-te-combo');
         if (select) {
             select.value = lang;
@@ -25,80 +24,63 @@
         }
     };
 
-    // 4. بناء واجهة الأدوات (زر الترجمة المنسدل + محول العملات + زر الحجز العائم)
+    // 4. إدراج زر الترجمة وأيقونة الحجز العائمة بعد تحميل الصفحة
     window.addEventListener('DOMContentLoaded', function() {
-        // حاوية مخفية لمحرك جوجل الأصلي
+        // عنصر جوجل المخفي
         var hiddenDiv = document.createElement('div');
         hiddenDiv.id = 'google_translate_element';
         hiddenDiv.style.display = 'none';
         document.body.appendChild(hiddenDiv);
 
-        // شريط الأدوات العلوي الموحد
+        // حاوية زر الترجمة
         var container = document.createElement('div');
         container.className = 'custom-translate-container';
-        container.style.cssText = 'text-align: left; margin: 15px 10px; font-family: Tahoma, sans-serif; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;';
+        container.style.cssText = 'text-align: left; margin: 15px 10px; font-family: Tahoma, sans-serif;';
 
-        // قائمة اللغات المنسدلة
-        var langDropdownHTML = `
+        // زر اختيار اللغة المنسدل (بدون كلمة روسية)
+        container.innerHTML = `
             <div style="position: relative; display: inline-block;">
-                <button class="globe-btn" onclick="let m=this.nextElementSibling; m.style.display = m.style.display === 'block' ? 'none' : 'block';" style="background: #1e3c72; color: white; border: none; padding: 10px 18px; border-radius: 30px; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">
-                    🌐 Languages / Языки
+                <button class="globe-btn" onclick="let m=this.nextElementSibling; m.style.display = m.style.display === 'block' ? 'none' : 'block';" style="background: #1e3c72; color: white; border: none; padding: 10px 18px; border-radius: 30px; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-weight: bold;">
+                    🌐 اللغة / Language
                 </button>
-                <div class="lang-menu" style="display: none; position: absolute; right: 0; top: 45px; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; min-width: 150px; overflow: hidden;">
-                    <button onclick="changelang('ar')" style="width: 100%; padding: 10px; border: none; background: none; text-align: right; cursor: pointer; font-weight: bold;">العربية</button>
-                    <button onclick="changelang('en')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer;">English</button>
-                    <button onclick="changelang('ru')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer;">Русский</button>
-                    <button onclick="changelang('de')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer;">Deutsch</button>
-                    <button onclick="changelang('fr')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer;">Français</button>
+                <div class="lang-menu" style="display: none; position: absolute; left: 0; top: 45px; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; min-width: 150px; overflow: hidden;">
+                    <button onclick="changelang('ar')" style="width: 100%; padding: 10px; border: none; background: none; text-align: right; cursor: pointer; font-weight: bold; border-bottom: 1px solid #eee;">العربية</button>
+                    <button onclick="changelang('en')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer; border-bottom: 1px solid #eee;">English</button>
+                    <button onclick="changelang('ru')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer; border-bottom: 1px solid #eee;">Русский</button>
+                    <button onclick="changelang('de')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer; border-bottom: 1px solid #eee;">Deutsch</button>
+                    <button onclick="changelang('fr')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer; border-bottom: 1px solid #eee;">Français</button>
                     <button onclick="changelang('zh-CN')" style="width: 100%; padding: 10px; border: none; background: none; text-align: left; cursor: pointer;">中文</button>
                 </div>
             </div>
         `;
-
-        // أداة محول العملات المبسطة
-        var currencyConverterHTML = `
-            <div style="display: flex; align-items: center; gap: 5px; background: #f8f9fa; padding: 5px 12px; border-radius: 20px; border: 1px solid #ddd;">
-                <span style="font-size: 12px; font-weight: bold; color: #333;">💱 العملة:</span>
-                <select id="globalCurrencySelect" onchange="convertCurrency(this.value)" style="border: none; background: transparent; font-size: 13px; cursor: pointer; outline: none;">
-                    <option value="EGP">EGP (جنيه)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                    <option value="SAR">SAR (ريال)</option>
-                </select>
-            </div>
-        `;
-
-        container.innerHTML = langDropdownHTML + currencyConverterHTML;
         
-        // إدراج الشريط في بداية الصفحة تلقائياً
+        // إدراج زر الترجمة أعلى الصفحة
         if (document.body.firstChild) {
             document.body.insertBefore(container, document.body.firstChild);
         } else {
             document.body.appendChild(container);
         }
 
-        // إغلاق القائمة عند النقر خارجها
+        // إغلاق القائمة عند النقر في أي مكان خارجها
         window.addEventListener('click', function(e) {
             if (!e.target.closest('.globe-btn')) {
-                document.querySelectorAll('.lang-menu').forEach(menu => {
+                document.querySelectorAll('.lang-menu').forEach(function(menu) {
                     menu.style.display = 'none';
                 });
             }
         });
 
-        // 5. إضافة أيقونة الحجز العائمة (Floating Booking Icon)
+        // 5. أيقونة الحجز العائمة الذكية (تفتح رابط الحجز المباشر في نافذة جديدة)
         var floatBtn = document.createElement('a');
-        floatBtn.href = "#hotels-section"; // يمكنك تعديل الوصلة لرابط الحجز الخاص بك
-        floatBtn.innerHTML = "🏨 احجز فندقك الآن";
-        floatBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; background-color: #28a745; color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 9999; font-size: 14px; transition: 0.3s;";
-        floatBtn.onmouseover = function() { this.style.backgroundColor = '#218838'; };
-        floatBtn.onmouseout = function() { this.style.backgroundColor = '#28a745'; };
+        floatBtn.href = "https://www.anrdoezrs.net/click-101918477-13833777"; // رابط الحجز بالعمولة الخاص بك
+        floatBtn.target = "_blank"; // فتح الرابط في نافذة جديدة
+        floatBtn.rel = "nofollow sponsored";
+        floatBtn.innerHTML = "🏨 احجز الفندق الآن / Book Now";
+        floatBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; background-color: #003580; color: white; padding: 12px 22px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; font-size: 14px; font-family: sans-serif; transition: 0.3s;";
+        
+        floatBtn.onmouseover = function() { this.style.backgroundColor = '#00224f'; };
+        floatBtn.onmouseout = function() { this.style.backgroundColor = '#003580'; };
+        
         document.body.appendChild(floatBtn);
     });
-
-    // دالة تحويل العملات الوظيفية (تلقائية للتوضيح)
-    window.convertCurrency = function(currency) {
-        console.log("تم تغيير العملة إلى: " + currency);
-        // يمكنك ربطها لاحقاً بتحديث الأسعار الظاهرة في الصفحة بناءً على العملة المختارة
-    };
 })();
