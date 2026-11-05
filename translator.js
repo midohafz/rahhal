@@ -24,7 +24,7 @@
         }
     };
 
-    // 4. إدراج زر الترجمة وأيقونة الحجز العائمة بعد تحميل الصفحة
+    // 4. إدراج أزرار اللغة وأيقونة الحجز بعد تحميل الصفحة
     window.addEventListener('DOMContentLoaded', function() {
         // عنصر جوجل المخفي
         var hiddenDiv = document.createElement('div');
@@ -32,15 +32,15 @@
         hiddenDiv.style.display = 'none';
         document.body.appendChild(hiddenDiv);
 
-        // حاوية زر الترجمة
+        // حاوية زر الترجمة العلوي
         var container = document.createElement('div');
         container.className = 'custom-translate-container';
         container.style.cssText = 'text-align: left; margin: 15px 10px; font-family: Tahoma, sans-serif;';
 
-        // زر اختيار اللغة المنسدل (بدون كلمة روسية)
+        // زر اختيار اللغة المنسدل بلون المظلة (#003580)
         container.innerHTML = `
             <div style="position: relative; display: inline-block;">
-                <button class="globe-btn" onclick="let m=this.nextElementSibling; m.style.display = m.style.display === 'block' ? 'none' : 'block';" style="background: #1e3c72; color: white; border: none; padding: 10px 18px; border-radius: 30px; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-weight: bold;">
+                <button class="globe-btn" onclick="let m=this.nextElementSibling; m.style.display = m.style.display === 'block' ? 'none' : 'block';" style="background: #003580; color: white; border: none; padding: 10px 18px; border-radius: 30px; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-weight: bold;">
                     🌐 اللغة / Language
                 </button>
                 <div class="lang-menu" style="display: none; position: absolute; left: 0; top: 45px; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; min-width: 150px; overflow: hidden;">
@@ -54,14 +54,14 @@
             </div>
         `;
         
-        // إدراج زر الترجمة أعلى الصفحة
+        // إدراج زر الترجمة في بداية الصفحة
         if (document.body.firstChild) {
             document.body.insertBefore(container, document.body.firstChild);
         } else {
             document.body.appendChild(container);
         }
 
-        // إغلاق القائمة عند النقر في أي مكان خارجها
+        // إغلاق قائمة اللغات عند النقر خارجها
         window.addEventListener('click', function(e) {
             if (!e.target.closest('.globe-btn')) {
                 document.querySelectorAll('.lang-menu').forEach(function(menu) {
@@ -70,10 +70,10 @@
             }
         });
 
-        // 5. أيقونة الحجز العائمة الذكية (تفتح رابط الحجز المباشر في نافذة جديدة)
+        // 5. أيقونة الحجز العائمة المطابقة للون الحجز والموجهة للموقع المطلوبة
         var floatBtn = document.createElement('a');
-        floatBtn.href = "https://www.anrdoezrs.net/click-101918477-13833777"; // رابط الحجز بالعمولة الخاص بك
-        floatBtn.target = "_blank"; // فتح الرابط في نافذة جديدة
+        floatBtn.href = "https://www.southwest.com/vacations/?cjdata=MXxOfDB8WXww&AID=13833777&PID=101918477&cjevent=49d534ddd92e11f1802c00340a1981e3&utm_source=cj&utm_medium=affiliate&utm_campaign=cj_affiliate";
+        floatBtn.target = "_blank";
         floatBtn.rel = "nofollow sponsored";
         floatBtn.innerHTML = "🏨 احجز الفندق الآن / Book Now";
         floatBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; background-color: #003580; color: white; padding: 12px 22px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; font-size: 14px; font-family: sans-serif; transition: 0.3s;";
