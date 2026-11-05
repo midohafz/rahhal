@@ -20,7 +20,7 @@
             line-height: 1.6; 
         }
 
-        /* شريط اللغات العصري برمز الكرة الأرضية */
+        /* شريط اللغات العصري المصغر */
         .lang-bar { 
             background: #111; 
             padding: 8px 25px; 
@@ -31,26 +31,27 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .lang-icon {
             color: #fff;
-            font-size: 16px;
-            margin-left: 5px;
+            font-size: 15px;
+            margin-left: 4px;
         }
         .lang-btn { 
             background: #222; 
-            color: white; 
+            color: #ccc; 
             border: 1px solid #444; 
-            padding: 5px 12px; 
+            padding: 4px 10px; 
             cursor: pointer; 
             border-radius: 4px; 
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold; 
             transition: 0.3s;
         }
         .lang-btn:hover, .lang-btn.active { 
             background: var(--secondary-color); 
+            color: white;
             border-color: var(--secondary-color);
         }
 
@@ -199,9 +200,9 @@
     <!-- شريط اللغات مع رمز الكرة الأرضية -->
     <div class="lang-bar">
         <span class="lang-icon">🌐</span>
-        <button class="lang-btn active" onclick="switchLang('ar', event)">العربية</button>
-        <button class="lang-btn" onclick="switchLang('en', event)">English</button>
-        <button class="lang-btn" onclick="switchLang('ru', event)">Русский</button>
+        <button class="lang-btn active" onclick="switchLang('ar', event)">AR</button>
+        <button class="lang-btn" onclick="switchLang('en', event)">EN</button>
+        <button class="lang-btn" onclick="switchLang('ru', event)">RU</button>
     </div>
 
     <!-- الهيدر -->
@@ -231,7 +232,7 @@
                         <h3>القاهرة ومصر القديمة</h3>
                         <p>الأزهر، خان الخليلي، قلعة صلاح الدين، وأهرامات الجيزة.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/cairo.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق القاهرة عبر Booking</a>
+                    <a href="cairo-hotels.html" class="btn-booking btn-info">📖 دليل فنادق القاهرة</a>
                 </div>
                 <div class="city-card">
                     <img src="./luxor.jpg" alt="الأقصر">
@@ -239,7 +240,7 @@
                         <h3>الأقصر (المفتوح)</h3>
                         <p>معبد الكرنك، معبد الأقصر، ووادي الملوك والملكات.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/luxor.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق الأقصر عبر Booking</a>
+                    <a href="luxor-hotels.html" class="btn-booking btn-info">📖 دليل فنادق الأقصر</a>
                 </div>
                 <div class="city-card">
                     <img src="./aswan.jpg" alt="أسوان">
@@ -247,7 +248,7 @@
                         <h3>أسوان النيلية</h3>
                         <p>معبد فيلة، أبو سمبل، والقرية النوبية الساحرة.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/aswan.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق أسوان عبر Booking</a>
+                    <a href="aswan-hotels.html" class="btn-booking btn-info">📖 دليل فنادق أسوان</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="شرم الشيخ">
@@ -271,7 +272,7 @@
                         <h3>الإسكندرية</h3>
                         <p>قلعة قايتباي، مكتبة الإسكندرية، وقصر المنتزه.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/alexandria.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق الإسكندرية عبر Booking</a>
+                    <a href="alexandria-hotels.html" class="btn-booking btn-info">📖 دليل فنادق الإسكندرية</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="مرسى علم">
@@ -279,7 +280,7 @@
                         <h3>مرسى علم</h3>
                         <p>محمية صمداي (بيت الدلافين) وشاطئ أبو دباب.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/marsa-alam.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق مرسى علم عبر Booking</a>
+                    <a href="marsa-alam-hotels.html" class="btn-booking btn-info">📖 دليل فنادق مرسى علم</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="العلمين">
@@ -287,7 +288,7 @@
                         <h3>العلمين الجديدة</h3>
                         <p>أبراج العلمين، الشواطئ الفيروزية الرائعة.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/el-alamein.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 فنادق العلمين عبر Booking</a>
+                    <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 دليل فنادق العلمين</a>
                 </div>
             </div>
 
@@ -342,7 +343,7 @@
                         <h3>Cairo & Old Egypt</h3>
                         <p>Al-Azhar, Khan El-Khalili, Citadel, and Giza Pyramids.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/cairo.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book Cairo via Booking</a>
+                    <a href="cairo-hotels.html" class="btn-booking btn-info">📖 Cairo Hotels Guide</a>
                 </div>
                 <div class="city-card">
                     <img src="./luxor.jpg" alt="Luxor">
@@ -350,7 +351,7 @@
                         <h3>Luxor City</h3>
                         <p>Karnak Temple, Luxor Temple, and Valley of the Kings.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/luxor.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book Luxor via Booking</a>
+                    <a href="luxor-hotels.html" class="btn-booking btn-info">📖 Luxor Hotels Guide</a>
                 </div>
                 <div class="city-card">
                     <img src="./aswan.jpg" alt="Aswan">
@@ -358,7 +359,7 @@
                         <h3>Aswan City</h3>
                         <p>Philae Temple, Abu Simbel, and Nubian Village.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/aswan.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book Aswan via Booking</a>
+                    <a href="aswan-hotels.html" class="btn-booking btn-info">📖 Aswan Hotels Guide</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Sharm">
@@ -382,7 +383,7 @@
                         <h3>Alexandria</h3>
                         <p>Qaitbay Citadel, Library, and Montaza Palace.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/alexandria.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book Alexandria via Booking</a>
+                    <a href="alexandria-hotels.html" class="btn-booking btn-info">📖 Alexandria Hotels Guide</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="Marsa Alam">
@@ -390,7 +391,7 @@
                         <h3>Marsa Alam</h3>
                         <p>Sataya Dolphin Reef and Abu Dabbab Beach.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/marsa-alam.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book Marsa Alam via Booking</a>
+                    <a href="marsa-alam-hotels.html" class="btn-booking btn-info">📖 Marsa Alam Hotels Guide</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="El Alamein">
@@ -398,7 +399,7 @@
                         <h3>New El Alamein</h3>
                         <p>Alamein Towers and crystal beaches.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/el-alamein.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Book El Alamein via Booking</a>
+                    <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 El Alamein Hotels Guide</a>
                 </div>
             </div>
 
@@ -425,7 +426,7 @@
                         <h3>Каир</h3>
                         <p>Аль-Азхар, Хан Эль-Халили, Цитадель и Пирамиды.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/cairo.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Каира через Booking</a>
+                    <a href="cairo-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Каира</a>
                 </div>
                 <div class="city-card">
                     <img src="./luxor.jpg" alt="Luxor">
@@ -433,7 +434,7 @@
                         <h3>Луксор</h3>
                         <p>Карнакский храм, Луксорский храм и Долина Царей.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/luxor.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Луксора через Booking</a>
+                    <a href="luxor-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Луксора</a>
                 </div>
                 <div class="city-card">
                     <img src="./aswan.jpg" alt="Aswan">
@@ -441,7 +442,7 @@
                         <h3>Асуан</h3>
                         <p>Храм Филе, Абу-Симбел и Нубийская деревня.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/aswan.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Асуана через Booking</a>
+                    <a href="aswan-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Асуана</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Sharm">
@@ -465,7 +466,7 @@
                         <h3>Александрия</h3>
                         <p>Цитадель Кайтбей, Библиотека и Монтаза.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/alexandria.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Александрии через Booking</a>
+                    <a href="alexandria-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Александрии</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="Marsa Alam">
@@ -473,7 +474,7 @@
                         <h3>Марса-Алам</h3>
                         <p>Риф Сатая и пляж Абу-Дабаб.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/marsa-alam.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Марса-Алама через Booking</a>
+                    <a href="marsa-alam-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Марса-Алама</a>
                 </div>
                 <div class="city-card">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="El Alamein">
@@ -481,7 +482,7 @@
                         <h3>Эль-Аламейн</h3>
                         <p>Башни Аламейн и чистые пляжи.</p>
                     </div>
-                    <a href="https://www.booking.com/city/eg/el-alamein.html?aid=101918477" class="btn-booking btn-info" target="_blank">📖 Отели Аламейна через Booking</a>
+                    <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Аламейна</a>
                 </div>
             </div>
 
