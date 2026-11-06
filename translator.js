@@ -1,14 +1,24 @@
-// translator.js - Unified UI, Language Switcher, and Affiliate Tracking for City Guides
-
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Inject Floating Booking Button (FAB) with active CJ Affiliate link
+    const affiliateUrl = "https://www.anrdoezrs.net/click-101918477-15364575";
+
+    // 1. تحديث أزرار الحجز الخاصة بالفنادق داخل الصفحة تلقائياً
+    const hotelBookingButtons = document.querySelectorAll(".btn-booking, a[href*='booking.com']");
+    hotelBookingButtons.forEach(button => {
+        // استثناء الزر العائم حتى لا يحدث تداخل إذا تم تعريفه بفئة أخرى
+        if (!button.style.position || button.style.position !== "fixed") {
+            button.href = affiliateUrl;
+            button.target = "_blank";
+            button.rel = "nofollow noopener";
+        }
+    });
+
+    // 2. إنشاء زر الحجز العائم (FAB)
     const fabButton = document.createElement("a");
-    fabButton.href = "https://www.anrdoezrs.net/click-101918477-15364575";
+    fabButton.href = affiliateUrl;
     fabButton.target = "_blank";
     fabButton.rel = "nofollow noopener";
     fabButton.innerHTML = "🏨 احجز الآن (Book Now)";
     
-    // Style the FAB with Booking.com Navy palette (#003580)
     fabButton.style.position = "fixed";
     fabButton.style.bottom = "20px";
     fabButton.style.right = "20px";
@@ -32,7 +42,4 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     document.body.appendChild(fabButton);
-
-    // 2. Centralized Translation Dropdown logic
-    console.log("Translator and Affiliate FAB initialized successfully with tracking ID: 15364575");
 });
