@@ -1,23 +1,34 @@
+// translator.js - المحرك الموحد لإصلاح وتتبع روابط الأفلييت وضبط الواجهة
 document.addEventListener("DOMContentLoaded", function() {
-    const affiliateUrl = "https://www.anrdoezrs.net/click-101918477-15364575";
+    // رابط التتبع العام والمصرح به عبر شبكة CJ لـ Booking.com
+    const cjAffiliateUrl = "https://www.anrdoezrs.net/click-101918477-15364575";
 
-    // 1. تحديث أزرار الحجز الخاصة بالفنادق داخل الصفحة تلقائياً
-    const hotelBookingButtons = document.querySelectorAll(".btn-booking, a[href*='booking.com']");
-    hotelBookingButtons.forEach(button => {
-        // استثناء الزر العائم حتى لا يحدث تداخل إذا تم تعريفه بفئة أخرى
+    // 1. تصحيح جميع روابط الفنادق و Booking.com في صفحات المدن وتوجيهها عبر CJ
+    const hotelButtons = document.querySelectorAll("a[href*='booking.com'], .btn-booking");
+    hotelButtons.forEach(button => {
+        // استثناء الزر العائم الأساسي لتفادي التكرار البرمجي
         if (!button.style.position || button.style.position !== "fixed") {
-            button.href = affiliateUrl;
+            button.href = cjAffiliateUrl;
             button.target = "_blank";
             button.rel = "nofollow noopener";
         }
     });
 
-    // 2. إنشاء زر الحجز العائم (FAB)
+    // 2. تصحيح أزرار "حجز طيران" المضللة وتعديل مسمياتها ووظيفتها
+    const flightButtons = document.querySelectorAll(".btn-flight, a[href*='flight']");
+    flightButtons.forEach(btn => {
+        btn.innerHTML = "🏨 عرض الفنادق والإقامة";
+        btn.href = cjAffiliateUrl;
+        btn.target = "_blank";
+        btn.rel = "nofollow noopener";
+    });
+
+    // 3. إنشاء وتثبيت زر الحجز العائم الاحترافي (FAB)
     const fabButton = document.createElement("a");
-    fabButton.href = affiliateUrl;
+    fabButton.href = cjAffiliateUrl;
     fabButton.target = "_blank";
     fabButton.rel = "nofollow noopener";
-    fabButton.innerHTML = "🏨 احجز الآن (Book Now)";
+    fabButton.innerHTML = "🏨 احجز فندقك الآن";
     
     fabButton.style.position = "fixed";
     fabButton.style.bottom = "20px";
