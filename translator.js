@@ -1,33 +1,53 @@
-// translator.js - المحرك الموحد لإصلاح وتتبع روابط الأفلييت وضبط الواجهة
 document.addEventListener("DOMContentLoaded", function() {
-    // رابط التتبع العام والمصرح به عبر شبكة CJ لـ Booking.com
+    // 1. رابط التتبع العام والمصرح به عبر شبكة CJ لـ Booking.com
     const cjAffiliateUrl = "https://www.anrdoezrs.net/click-101918477-15364575";
 
-    // 1. تصحيح جميع روابط الفنادق و Booking.com في صفحات المدن وتوجيهها عبر CJ
+    // 2. تصحيح جميع روابط الفنادق و Booking.com في صفحات المدن
     const hotelButtons = document.querySelectorAll("a[href*='booking.com'], .btn-booking");
     hotelButtons.forEach(button => {
-        // استثناء الزر العائم الأساسي لتفادي التكرار البرمجي
         if (!button.style.position || button.style.position !== "fixed") {
             button.href = cjAffiliateUrl;
             button.target = "_blank";
-            button.rel = "nofollow noopener";
+            button.rel = "nofollow noopener sponsored";
         }
     });
 
-    // 2. تصحيح أزرار "حجز طيران" المضللة وتعديل مسمياتها ووظيفتها
+    // 3. معالجة وتعديل أزرار الطيران المضللة لتعكس خدمات الإقامة بدقة
     const flightButtons = document.querySelectorAll(".btn-flight, a[href*='flight']");
     flightButtons.forEach(btn => {
         btn.innerHTML = "🏨 عرض الفنادق والإقامة";
         btn.href = cjAffiliateUrl;
         btn.target = "_blank";
-        btn.rel = "nofollow noopener";
+        btn.rel = "nofollow noopener sponsored";
+    });
+    
+    // أيضاً البحث عن الأزرار بالاعتماد على النص العربي
+    document.querySelectorAll("a").forEach(a => {
+        if (a.innerText.includes("حجز طيران") || a.innerText.includes("طيران")) {
+            a.innerHTML = "🏨 عرض الفنادق والإقامة";
+            a.href = cjAffiliateUrl;
+            a.target = "_blank";
+            a.rel = "nofollow noopener sponsored";
+        }
     });
 
-    // 3. إنشاء وتثبيت زر الحجز العائم الاحترافي (FAB)
+    // 4. تفعيل الخطوة 3: إدراج تذييل إفصاح العمولة تلقائياً أسفل الصفحة
+    if (!document.getElementById("rahhal-footer-disclosure")) {
+        const footerDiv = document.createElement("footer");
+        footerDiv.id = "rahhal-footer-disclosure";
+        footerDiv.style.cssText = "background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 13px; color: #6c757d; border-top: 1px solid #e9ecef; margin-top: 40px; direction: rtl;";
+        footerDiv.innerHTML = `
+            <p style="margin-bottom: 8px;"><strong>إفصاح الشفافية:</strong> يحتوي هذا الموقع على روابط تسويق بالعمولة (Affiliate Links). عند النقر على هذه الروابط وإجراء حجز، قد نتحصل على عمولة بسيطة من منصة Booking.com دون أي تكلفة إضافية عليك. يساعدنا هذا في استمرار تقديم الأدلة السياحية المجانية.</p>
+            <p style="margin: 0;">© 2026 رحال للسفر والسياحة - جميع الحقوق محفوظة</p>
+        `;
+        document.body.appendChild(footerDiv);
+    }
+
+    // 5. إنشاء زر الحجز العائم (FAB)
     const fabButton = document.createElement("a");
     fabButton.href = cjAffiliateUrl;
     fabButton.target = "_blank";
-    fabButton.rel = "nofollow noopener";
+    fabButton.rel = "nofollow noopener sponsored";
     fabButton.innerHTML = "🏨 احجز فندقك الآن";
     
     fabButton.style.position = "fixed";
