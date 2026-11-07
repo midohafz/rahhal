@@ -1,635 +1,94 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رحّال | Rahhal - الدليل التفاعلي الشامل للسياحة في مصر</title>
-    <style>
-        :root { 
-            --primary-color: #1e3c72; 
-            --secondary-color: #ff5722; 
-            --bg-color: #f8f9fa; 
-            --text-color: #333; 
-        }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-
-        /* شريط اللغات العصري مع قائمة تفاعلية للكرة الأرضية */
-        .lang-bar { 
-            background: #111; 
-            padding: 8px 25px; 
-            text-align: left; 
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 8px;
-        }
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .globe-btn {
-            background: #222;
-            color: white;
-            border: 1px solid #444;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-        .globe-btn:hover {
-            background: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-        .lang-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #222;
-            min-width: 100px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            z-index: 1;
-            overflow: hidden;
-            border: 1px solid #444;
-        }
-        .lang-menu button {
-            color: #ccc;
-            padding: 8px 12px;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            background: none;
-            border: none;
-            text-align: right;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .lang-menu button:hover {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        .lang-dropdown:hover .lang-menu {
-            display: block;
-        }
-        .lang-btn { 
-            background: #222; 
-            color: #ccc; 
-            border: 1px solid #444; 
-            padding: 5px 12px; 
-            cursor: pointer; 
-            border-radius: 4px; 
-            font-size: 12px;
-            font-weight: bold; 
-            transition: 0.3s;
-        }
-        .lang-btn:hover, .lang-btn.active { 
-            background: var(--secondary-color); 
-            color: white;
-            border-color: var(--secondary-color);
-        }
-
-        /* الهيدر */
-        header { 
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                        url('./watermarked_img_12598180113834347329.jpg') center top / cover no-repeat; 
-            color: white; 
-            padding: 100px 20px 20px 20px; 
-            text-align: center; 
-            margin: 0;
-        }
-        header h1 { font-size: 42px; margin: 0 0 8px 0; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); }
-        header p { font-size: 18px; margin: 0; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
-        
-        .welcome-subtext {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-top: 10px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
-        }
-
-        .container { max-width: 1100px; margin: 25px auto; padding: 0 20px; }
-        .lang-section { display: none; }
-        .lang-section.active { display: block; }
-
-        .section-header {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 6px;
-            margin-top: 35px;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-
-        .search-container {
-            margin-bottom: 25px;
-            text-align: center;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-        }
-        .search-input {
-            width: 100%;
-            max-width: 600px;
-            padding: 10px 18px;
-            font-size: 15px;
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-input:focus {
-            border-color: var(--secondary-color);
-        }
-
-        .web-search-box {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
-        }
-        .web-search-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .web-search-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        /* تنسيق الشبكة وبطاقات المدن */
-        .cities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-        .city-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .city-card img { width: 100%; height: 150px; object-fit: cover; }
-        .city-content { padding: 15px; flex-grow: 1; }
-        .city-content h3 { color: var(--primary-color); margin-top: 0; font-size: 18px; }
-        .city-content p { font-size: 14px; color: #555; line-height: 1.5; }
-
-        /* مساحة إعلانية مميزة لشركات السياحة */
-        .ad-card {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border: 2px dashed var(--secondary-color);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        .ad-card h3 { color: #d84315; margin-top: 0; font-size: 18px; }
-        .ad-card p { font-size: 13px; color: #555; margin-bottom: 15px; }
-        .btn-ad {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-ad:hover { background-color: #e64a19; }
-
-        .btn-booking { 
-            display: block; 
-            background-color: var(--secondary-color); 
-            color: white; 
-            padding: 10px 12px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-size: 13px;
-            font-weight: bold; 
-            text-align: center; 
-            margin: 10px 15px 15px; 
-            transition: 0.3s;
-        }
-        .btn-booking:hover { background-color: #e64a19; }
-        .btn-info { background-color: var(--primary-color); }
-        .btn-info:hover { background-color: #12284c; }
-
-        .hotels-grid, .airlines-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .hotel-card, .airline-card {
-            background: white;
-            border-radius: 10px;
-            padding: 18px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            font-size: 14px;
-        }
-        .hotel-card h4, .airline-card h4 { font-size: 16px; margin-top: 0; color: var(--primary-color); }
-
-        .legal-section { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-top: 35px; 
-            font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04); 
-        }
-
-        footer { text-align: center; padding: 20px; background: #222; color: white; margin-top: 40px; font-size: 13px; }
-    </style>
-    <!-- CJ Deep Link Automation Script -->
-    <script type="text/javascript" src="//www.anrdoezrs.net/am/101918477/include/allSubmit/js/deeplink.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رحّال | دليل مدن مصر السياحية والفنادق</title>
+<meta name="description" content="دليل لمدن مصر السياحية وفنادقها وشركات الطيران، بثلاث لغات: العربية والإنجليزية والروسية.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0b6e7a">
+<link rel="canonical" href="https://midohafz.github.io/rahhal/index.html">
+<link rel="alternate" hreflang="ar" href="https://midohafz.github.io/rahhal/index.html">
+<link rel="alternate" hreflang="en" href="https://midohafz.github.io/rahhal/en/index.html">
+<link rel="alternate" hreflang="ru" href="https://midohafz.github.io/rahhal/ru/index.html">
+<link rel="alternate" hreflang="x-default" href="https://midohafz.github.io/rahhal/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b6e7a%27/%3E%3Cpath d=%27M8 52L32 14l24 38z%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="رحّال | دليل مدن مصر السياحية والفنادق">
+<meta property="og:description" content="دليل لمدن مصر السياحية وفنادقها وشركات الطيران، بثلاث لغات: العربية والإنجليزية والروسية.">
+<meta property="og:url" content="https://midohafz.github.io/rahhal/index.html">
+<meta property="og:locale" content="ar_EG">
+<style>
+:root{--bg:#f4f7f8;--surface:#fff;--ink:#12262e;--muted:#566b73;--line:#d8e2e6;--brand:#0b6e7a;--brand-ink:#fff;--soft:#e0f0f2;--warn:#fff4d6;--warn-ink:#4a3a00;--hero1:#0b4f63;--hero2:#0b6e7a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1a20;--surface:#16262e;--ink:#e8f1f4;--muted:#9bb0b8;--line:#27404a;--brand:#4cc3d0;--brand-ink:#06242a;--soft:#1b3a42;--warn:#3a3210;--warn-ink:#f1e3a8;--hero1:#0b3a48;--hero2:#0e5560}}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,Arial,"Noto Sans",sans-serif;font-size:17px;line-height:1.75}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--brand)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.bar{background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:10px;padding-bottom:10px;gap:12px;flex-wrap:wrap}
+.bar a.brand{font-weight:800;font-size:20px;text-decoration:none}
+.langs a{display:inline-block;margin-inline-start:6px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:15px;color:var(--ink)}
+.langs a[aria-current="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:700}
+.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:18px;padding:28px 22px 0;margin:18px 0;overflow:hidden}
+.hero h1{font-size:34px;line-height:1.3;margin:0 0 6px}
+.hero p{margin:0 0 6px;font-size:18px}
+.hero svg{display:block;width:100%;height:90px;margin-top:10px}
+h1{font-size:28px;line-height:1.35;margin:12px 0}
+h2{font-size:23px;margin:34px 0 10px}
+h3{font-size:19px;margin:0 0 4px}
+.note{background:var(--warn);color:var(--warn-ink);border-radius:12px;padding:10px 14px;font-size:15px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card .body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column}
+.card svg.art{display:block;width:100%;height:84px}
+.hotel{padding:16px;margin:14px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.en{color:var(--muted);font-size:14px;direction:ltr}
+html[dir=rtl] .en{text-align:right}
+.tags span{display:inline-block;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin:6px 0 0;margin-inline-end:6px;color:var(--muted)}
+.tip{background:var(--soft);border-radius:10px;padding:8px 12px;font-size:15px;margin-top:10px}
+.btn{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:10px;background:var(--brand);color:var(--brand-ink);font-weight:700;text-decoration:none}
+.card .btn{margin-top:auto;text-align:center}
+.card p{margin:6px 0 12px;color:var(--muted)}
+.search{width:100%;max-width:520px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit;margin:8px 0 18px}
+.back{font-size:15px}
+footer{margin-top:44px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+footer a{margin-inline-end:10px}
+@media (max-width:520px){.hero h1{font-size:27px}}
+</style>
 </head>
 <body>
-
-    <!-- شريط اللغات مع الكرة الأرضية وقائمة اللغات الأجنبية -->
-    <div class="lang-bar">
-        <button class="lang-btn active" onclick="switchLang('ar', event)">العربية (AR)</button>
-        <div class="lang-dropdown">
-            <button class="globe-btn">🌐 ▾</button>
-            <div class="lang-menu">
-                <button onclick="switchLang('en', event)">English (EN)</button>
-                <button onclick="switchLang('ru', event)">Русский (RU)</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- الهيدر -->
-    <header>
-        <h1 id="header-title">رحّال | Rahhal</h1>
-        <p id="header-subtitle">دليلك الشامل لمدن مصر التاريخية والسياحية، الفنادق، وخدمات الطيران</p>
-        <div class="welcome-subtext" id="header-welcome">أهلاً بكم في مصر 🇪🇬</div>
-    </header>
-
-    <div class="container">
-
-        <!-- ================= العربية ================= -->
-        <div id="ar" class="lang-section active" dir="rtl">
-            
-            <div class="search-container">
-                <input type="text" id="search-ar" class="search-input" placeholder="🔍 ابحث عن مدينة أو معلم في الموقع..." oninput="filterCities('ar', this.value)">
-                <div class="web-search-box">
-                    <button class="web-search-btn" onclick="searchWeb('ar')">🌐 البحث في الويب (Google)</button>
-                </div>
-            </div>
-
-            <h2 class="section-header">🏛️ قائمة المدن والمعالم السياحية في مصر</h2>
-            <div class="cities-grid" id="cities-ar">
-                <div class="city-card">
-                    <img src="./azhar.jpg" alt="القاهرة ومصر القديمة">
-                    <div class="city-content">
-                        <h3>القاهرة ومصر القديمة</h3>
-                        <p>الأزهر، خان الخليلي، قلعة صلاح الدين، وأهرامات الجيزة.</p>
-                    </div>
-                    <a href="ar/cairo-hotels.html" class="btn-booking btn-info">📖 دليل فنادق القاهرة</a>
-                </div>
-                <div class="city-card">
-                    <img src="./luxor.jpg" alt="الأقصر">
-                    <div class="city-content">
-                        <h3>الأقصر (المفتوح)</h3>
-                        <p>معبد الكرنك، معبد الأقصر، ووادي الملوك والملكات.</p>
-                    </div>
-                    <a href="ar/luxor-hotels.html" class="btn-booking btn-info">📖 دليل فنادق الأقصر</a>
-                </div>
-                <div class="city-card">
-                    <img src="./aswan.jpg" alt="أسوان">
-                    <div class="city-content">
-                        <h3>أسوان النيلية</h3>
-                        <p>معبد فيلة، أبو سمبل، والقرية النوبية الساحرة.</p>
-                    </div>
-                    <a href="ar/aswan-hotels.html" class="btn-booking btn-info">📖 دليل فنادق أسوان</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="شرم الشيخ">
-                    <div class="city-content">
-                        <h3>شرم الشيخ وطابا</h3>
-                        <p>محمية رأس محمد، خليج نعمة، وسوهو سكوير.</p>
-                    </div>
-                    <a href="ar/sharm-and-taba-hotels.html" class="btn-booking btn-info">📖 دليل فنادق شرم وطابا</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="الغردقة">
-                    <div class="city-content">
-                        <h3>الغردقة والجونة</h3>
-                        <p>جزيرة الجفتون، مارينا الجونة، ومتحف الأحياء المائية.</p>
-                    </div>
-                    <a href="ar/hurghada-hotels.html" class="btn-booking btn-info">📖 دليل فنادق الغردقة</a>
-                </div>
-                <div class="city-card">
-                    <img src="./قلعة.jpg" alt="الإسكندرية">
-                    <div class="city-content">
-                        <h3>الإسكندرية</h3>
-                        <p>قلعة قايتباي، مكتبة الإسكندرية، وقصر المنتزه.</p>
-                    </div>
-                    <a href="ar/alexandria-hotels.html" class="btn-booking btn-info">📖 دليل فنادق الإسكندرية</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="مرسى علم">
-                    <div class="city-content">
-                        <h3>مرسى علم</h3>
-                        <p>محمية صمداي (بيت الدلافين) وشاطئ أبو دباب.</p>
-                    </div>
-                    <a href="ar/marsa-alam-hotels.html" class="btn-booking btn-info">📖 دليل فنادق مرسى علم</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="العلمين">
-                    <div class="city-content">
-                        <h3>العلمين الجديدة</h3>
-                        <p>أبراج العلمين، الشواطئ الفيروزية الرائعة.</p>
-                    </div>
-                    <a href="ar/el-alamein-hotels.html" class="btn-booking btn-info">📖 دليل فنادق العلمين</a>
-                </div>
-                <!-- مساحة إعلانية لشركات السياحة بجوار العلمين -->
-                <div class="ad-card">
-                    <h3>📢 مساحتك الإعلانية هنا</h3>
-                    <p>هل تمتلك شركة سياحة أو تنقل؟ اعرض خدماتك لآلاف السياح يومياً عبر منصة "رحّال".</p>
-                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">تواصل معنا للإعلان</a>
-                </div>
-            </div>
-
-            <h2 class="section-header">🏨 قائمة الفنادق وحجوزات الإقامة</h2>
-            <div class="hotels-grid">
-                <div class="hotel-card">
-                    <h4>👑 الفئة الفاخرة (5 نجوم)</h4>
-                    <p>فورسيزونز نايل بلازا، مينا هاوس، أولد كاتاراكت أسوان، وريكسوس شرم الشيخ.</p>
-                    <a href="https://www.booking.com/index.html?aid=101918477" class="btn-booking" target="_blank">حجز فنادق فاخرة</a>
-                </div>
-                <div class="hotel-card">
-                    <h4>💡 الفئة الاقتصادية والتراثية</h4>
-                    <p>فنادق وسط البلد البوتيكية بالقاهرة، البيوت النوبية بأسوان، ومخيمات طابا ونويبع.</p>
-                    <a href="https://www.booking.com/index.html?aid=101918477" class="btn-booking" target="_blank">حجز فنادق اقتصادية</a>
-                </div>
-            </div>
-
-            <h2 class="section-header">✈️ شركات الطيران وخدمات التنقل</h2>
-            <div class="airlines-grid">
-                <div class="airline-card">
-                    <h4>👑 الطيران المنتظم ودرجة الأعمال</h4>
-                    <p>مصر للطيران، الخطوط الإماراتية، والقطرية للرحلات المباشرة وخدمات VIP.</p>
-                    <a href="https://www.booking.com/index.html?aid=101918477" class="btn-booking" target="_blank">حجز طيران فاخر</a>
-                </div>
-                <div class="airline-card">
-                    <h4>💡 الطيران الاقتصادي والشارتر</h4>
-                    <p>إير كايرو، طيران العربية، وWizz Air للرحلات الاقتصادية.</p>
-                    <a href="https://www.booking.com/index.html?aid=101918477" class="btn-booking" target="_blank">حجز طيران اقتصادي</a>
-                </div>
-            </div>
-
-            <div class="legal-section">
-                <h2>سياسة الخصوصية (Privacy Policy)</h2>
-                <p>مالك المنصة: Mohamad Badawy Hafz | البريد: Rahhalegypt@gmail.com</p>
-            </div>
-        </div>
-
-        <!-- ================= English ================= -->
-        <div id="en" class="lang-section" dir="ltr">
-            <div class="search-container">
-                <input type="text" id="search-en" class="search-input" placeholder="🔍 Search cities..." oninput="filterCities('en', this.value)">
-                <div class="web-search-box">
-                    <button class="web-search-btn" onclick="searchWeb('en')">🌐 Search Web (Google)</button>
-                </div>
-            </div>
-
-            <h2 class="section-header">🏛️ Egyptian Tourist Cities & Guides</h2>
-            <div class="cities-grid" id="cities-en">
-                <div class="city-card">
-                    <img src="./azhar.jpg" alt="Cairo">
-                    <div class="city-content">
-                        <h3>Cairo & Old Egypt</h3>
-                        <p>Al-Azhar, Khan El-Khalili, Citadel, and Giza Pyramids.</p>
-                    </div>
-                    <a href="cairo-hotels.html" class="btn-booking btn-info">📖 Cairo Hotels Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="./luxor.jpg" alt="Luxor">
-                    <div class="city-content">
-                        <h3>Luxor City</h3>
-                        <p>Karnak Temple, Luxor Temple, and Valley of the Kings.</p>
-                    </div>
-                    <a href="luxor-hotels.html" class="btn-booking btn-info">📖 Luxor Hotels Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="./aswan.jpg" alt="Aswan">
-                    <div class="city-content">
-                        <h3>Aswan City</h3>
-                        <p>Philae Temple, Abu Simbel, and Nubian Village.</p>
-                    </div>
-                    <a href="aswan-hotels.html" class="btn-booking btn-info">📖 Aswan Hotels Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Sharm">
-                    <div class="city-content">
-                        <h3>Sharm El Sheikh & Taba</h3>
-                        <p>Ras Mohammed, Naama Bay, and Soho Square.</p>
-                    </div>
-                    <a href="sharm-and-taba-hotels.html" class="btn-booking btn-info">📖 Sharm & Taba Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Hurghada">
-                    <div class="city-content">
-                        <h3>Hurghada & El Gouna</h3>
-                        <p>Giftun Island, El Gouna Marina, and Aquarium.</p>
-                    </div>
-                    <a href="hurghada-hotels.html" class="btn-booking btn-info">📖 Hurghada Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="./قلعة.jpg" alt="Alexandria">
-                    <div class="city-content">
-                        <h3>Alexandria</h3>
-                        <p>Qaitbay Citadel, Library, and Montaza Palace.</p>
-                    </div>
-                    <a href="alexandria-hotels.html" class="btn-booking btn-info">📖 Alexandria Hotels Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="Marsa Alam">
-                    <div class="city-content">
-                        <h3>Marsa Alam</h3>
-                        <p>Sataya Dolphin Reef and Abu Dabbab Beach.</p>
-                    </div>
-                    <a href="marsa-alam-hotels.html" class="btn-booking btn-info">📖 Marsa Alam Hotels Guide</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="El Alamein">
-                    <div class="city-content">
-                        <h3>New El Alamein</h3>
-                        <p>Alamein Towers and crystal beaches.</p>
-                    </div>
-                    <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 El Alamein Hotels Guide</a>
-                </div>
-                <!-- Advertisement Space -->
-                <div class="ad-card">
-                    <h3>📢 Your Ad Here</h3>
-                    <p>Own a travel agency or transport service? Showcase your offers to thousands of tourists daily.</p>
-                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">Contact Us to Advertise</a>
-                </div>
-            </div>
-
-            <div class="legal-section">
-                <h2>Privacy Policy</h2>
-                <p>Owner: Mohamad Badawy Hafz | Email: Rahhalegypt@gmail.com</p>
-            </div>
-        </div>
-
-        <!-- ================= Русский ================= -->
-        <div id="ru" class="lang-section" dir="ltr">
-            <div class="search-container">
-                <input type="text" id="search-ru" class="search-input" placeholder="🔍 Поиск городов..." oninput="filterCities('ru', this.value)">
-                <div class="web-search-box">
-                    <button class="web-search-btn" onclick="searchWeb('ru')">🌐 Поиск в Google</button>
-                </div>
-            </div>
-
-            <h2 class="section-header">🏛️ Города и Достопримечательности Египта</h2>
-            <div class="cities-grid" id="cities-ru">
-                <div class="city-card">
-                    <img src="./azhar.jpg" alt="Cairo">
-                    <div class="city-content">
-                        <h3>Каир</h3>
-                        <p>Аль-Азхар, Хан Эль-Халили, Цитадель и Пирамиды.</p>
-                    </div>
-                    <a href="cairo-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Каира</a>
-                </div>
-                <div class="city-card">
-                    <img src="./luxor.jpg" alt="Luxor">
-                    <div class="city-content">
-                        <h3>Луксор</h3>
-                        <p>Карнакский храм, Луксорский храм и Долина Царей.</p>
-                    </div>
-                    <a href="luxor-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Луксора</a>
-                </div>
-                <div class="city-card">
-                    <img src="./aswan.jpg" alt="Aswan">
-                    <div class="city-content">
-                        <h3>Асуан</h3>
-                        <p>Храм Филе, Абу-Симбел и Нубийская деревня.</p>
-                    </div>
-                    <a href="aswan-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Асуана</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Sharm">
-                    <div class="city-content">
-                        <h3>Шарм-эль-Шейх и Таба</h3>
-                        <p>Рас-Мохаммед, Наама Бей и Сохо Сквер.</p>
-                    </div>
-                    <a href="sharm-and-taba-hotels.html" class="btn-booking btn-info">📖 Гид по Шарму и Табе</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Hurghada">
-                    <div class="city-content">
-                        <h3>Хургада и Эль-Гуна</h3>
-                        <p>Остров Гифтун, Марина Эль-Гуна и Аквариум.</p>
-                    </div>
-                    <a href="hurghada-hotels.html" class="btn-booking btn-info">📖 Гид по Хургаде</a>
-                </div>
-                <div class="city-card">
-                    <img src="./قلعة.jpg" alt="Alexandria">
-                    <div class="city-content">
-                        <h3>Александрия</h3>
-                        <p>Цитадель Кайтбей, Библиотека и Монтаза.</p>
-                    </div>
-                    <a href="alexandria-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Александрии</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=600&q=80" alt="Marsa Alam">
-                    <div class="city-content">
-                        <h3>Марса-Алам</h3>
-                        <p>Риф Сатая и пляж Абу-Дабаб.</p>
-                    </div>
-                    <a href="marsa-alam-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Марса-Алама</a>
-                </div>
-                <div class="city-card">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="El Alamein">
-                    <div class="city-content">
-                        <h3>Эль-Аламейн</h3>
-                        <p>Башни Аламейн и чистые пляжи.</p>
-                    </div>
-                    <a href="el-alamein-hotels.html" class="btn-booking btn-info">📖 Гид по отелям Аламейна</a>
-                </div>
-                <!-- Рекламное пространство -->
-                <div class="ad-card">
-                    <h3>📢 Ваша реклама здесь</h3>
-                    <p>У вас есть туристическое агентство? Предложите свои услуги тысячам туристов ежедневно.</p>
-                    <a href="mailto:Rahhalegypt@gmail.com" class="btn-ad">Связаться с нами для рекламы</a>
-                </div>
-            </div>
-
-            <div class="legal-section">
-                <h2>Политика конфиденциальности</h2>
-                <p>Владелец: Mohamad Badawy Hafz | Эл. почта: Rahhalegypt@gmail.com</p>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        جميع الحقوق محفوظة © 2026 موقع رحّال | Rahhal - تصميم وإدارة: محمد بدوى حافظ 
-    </footer>
-
-    <script>
-        function switchLang(lang, event) {
-            document.querySelectorAll('.lang-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(lang).classList.add('active');
-            if (event && event.target) {
-                // إذا كان الزر داخل القائمة المنسدلة للكرة الأرضية
-                if(event.target.closest('.lang-menu')) {
-                    document.querySelector('.globe-btn').classList.add('active');
-                } else {
-                    event.target.classList.add('active');
-                }
-            }
-        }
-
-        function filterCities(lang, query) {
-            const container = document.getElementById(`cities-${lang}`);
-            const cards = container.getElementsByClassName('city-card');
-            const filter = query.toLowerCase();
-            
-            for (let card of cards) {
-                const text = card.textContent || card.innerText;
-                if (text.toLowerCase().indexOf(filter) > -1) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-            }
-        }
-
-        function searchWeb(lang) {
-            let query = document.getElementById(`search-${lang}`).value;
-            if (query.trim() !== "") {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-            } else {
-                alert(lang === 'ar' ? 'الرجاء إدخال كلمة للبحث' : (lang === 'en' ? 'Please enter a search term' : 'Пожалуйста, введите поисковый запрос'));
-            }
-        }
-    </script>
+<div class="bar"><div class="wrap"><a class="brand" href="index.html">رحّال</a><nav class="langs" aria-label="اللغة"><a href="index.html" hreflang="ar" lang="ar" aria-current="true">العربية</a><a href="en/index.html" hreflang="en" lang="en">English</a><a href="ru/index.html" hreflang="ru" lang="ru">Русский</a></nav></div></div>
+<div class="wrap">
+<section class="hero"><h1>رحّال</h1><p>دليلك لمدن مصر السياحية والفنادق وخدمات الطيران</p><p><strong>أهلاً بكم في مصر</strong></p><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#ffffff" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#ffffff" fill-opacity=".55"/><path d="M20 64L80 14l60 50zM100 64l50-34 50 34zM170 64l40-26 40 26z" fill="#ffffff" fill-opacity=".75"/></svg></section>
+<h2>المدن والمعالم السياحية</h2>
+<input class="search" id="q" type="search" placeholder="ابحث عن مدينة" aria-label="ابحث عن مدينة">
+<div class="grid" id="cities">
+<article class="card"><a href="cairo-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#b5651d" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#b5651d" fill-opacity=".55"/><path d="M20 64L80 14l60 50zM100 64l50-34 50 34zM170 64l40-26 40 26z" fill="#b5651d" fill-opacity=".75"/></svg></a><div class="body"><h3>القاهرة ومصر القديمة</h3><p>الأزهر، خان الخليلي، قلعة صلاح الدين، وأهرامات الجيزة.</p><a class="btn" href="cairo-hotels.html">دليل فنادق — القاهرة</a></div></article>
+<article class="card"><a href="luxor-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#8a3b5c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#8a3b5c" fill-opacity=".55"/><path d="M30 20h240v8H30zM44 28h14v36H44zM84 28h14v36H84zM124 28h14v36h-14zM164 28h14v36h-14zM204 28h14v36h-14zM244 28h14v36h-14z" fill="#8a3b5c" fill-opacity=".75"/></svg></a><div class="body"><h3>الأقصر</h3><p>معبد الكرنك، معبد الأقصر، ووادي الملوك والملكات.</p><a class="btn" href="luxor-hotels.html">دليل فنادق — الأقصر</a></div></article>
+<article class="card"><a href="aswan-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#2d5fa8" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#2d5fa8" fill-opacity=".55"/><path d="M30 20h240v8H30zM44 28h14v36H44zM84 28h14v36H84zM124 28h14v36h-14zM164 28h14v36h-14zM204 28h14v36h-14zM244 28h14v36h-14z" fill="#2d5fa8" fill-opacity=".75"/></svg></a><div class="body"><h3>أسوان</h3><p>معبد فيلة، أبو سمبل، والقرية النوبية.</p><a class="btn" href="aswan-hotels.html">دليل فنادق — أسوان</a></div></article>
+<article class="card"><a href="sharm-and-taba-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>شرم الشيخ</h3><p>محمية رأس محمد، خليج نعمة، وسوهو سكوير.</p><a class="btn" href="sharm-and-taba-hotels.html">دليل فنادق — شرم الشيخ</a></div></article>
+<article class="card"><a href="hurghada-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>الغردقة</h3><p>جزيرة الجفتون، مارينا الجونة، ومتحف الأحياء المائية.</p><a class="btn" href="hurghada-hotels.html">دليل فنادق — الغردقة</a></div></article>
+<article class="card"><a href="alexandria-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#3b7a57" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#3b7a57" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".8"/></svg></a><div class="body"><h3>الإسكندرية</h3><p>قلعة قايتباي، مكتبة الإسكندرية، وقصر المنتزه.</p><a class="btn" href="alexandria-hotels.html">دليل فنادق — الإسكندرية</a></div></article>
+<article class="card"><a href="marsa-alam-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>مرسى علم</h3><p>محمية صمداي (بيت الدلافين) وشاطئ أبو دباب.</p><a class="btn" href="marsa-alam-hotels.html">دليل فنادق — مرسى علم</a></div></article>
+<article class="card"><a href="el-alamein-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#3b7a57" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#3b7a57" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".8"/></svg></a><div class="body"><h3>العلمين الجديدة</h3><p>أبراج العلمين، الشواطئ الفيروزية الرائعة.</p><a class="btn" href="el-alamein-hotels.html">دليل فنادق — العلمين</a></div></article>
+</div>
+<h2>الطيران</h2>
+<p>لا نبيع تذاكر الطيران. هذه مواقع الشركات الرسمية للتحقق من الرحلات والأسعار.</p>
+<div class="grid">
+<article class="card"><div class="body"><h3>مصر للطيران</h3><p>الناقل الوطني، وله أوسع شبكة رحلات داخلية.</p><p><strong>المسارات:</strong> القاهرة، شرم الشيخ، الغردقة، مرسى علم، الإسكندرية، الأقصر، العلمين، أسوان، أبو سمبل</p><a class="btn" rel="noopener" target="_blank" href="https://www.egyptair.com">الموقع الرسمي</a></div></article>
+<article class="card"><div class="body"><h3>إير كايرو</h3><p>شركة اقتصادية تابعة لمصر للطيران، تشغّل رحلات داخلية وإقليمية.</p><p><strong>المسارات:</strong> القاهرة، شرم الشيخ، الغردقة، مرسى علم، الأقصر، أسوان، أبو سمبل</p><a class="btn" rel="noopener" target="_blank" href="https://www.aircairo.com">الموقع الرسمي</a></div></article>
+<article class="card"><div class="body"><h3>النيل للطيران</h3><p>شركة خاصة تركز على الرحلات الداخلية بين المدن السياحية.</p><p><strong>المسارات:</strong> القاهرة، شرم الشيخ، الغردقة، الأقصر، أسوان</p><a class="btn" rel="noopener" target="_blank" href="https://www.nileair.com">الموقع الرسمي</a></div></article>
+<article class="card"><div class="body"><h3>نسمة للطيران</h3><p>شركة مصرية تابعة لمجموعة نسمة السعودية، برحلات داخلية وإقليمية.</p><p><strong>المسارات:</strong> القاهرة، شرم الشيخ، الغردقة، الأقصر، أسوان، سوهاج</p><a class="btn" rel="noopener" target="_blank" href="https://www.nesmaairlines.com">الموقع الرسمي</a></div></article>
+</div>
+<h2>للتعاون والإعلان</h2>
+<p>تمتلك شركة سياحة أو نقل مرخّصة؟ راسلنا لمناقشة التعاون.</p>
+<p><a class="btn" href="mailto:Rahhalegypt@gmail.com">تواصل معنا</a></p>
+<div class="note" role="note">روابط الحجز في صفحات الفنادق روابط شراكة مع Booking.com عبر شبكة CJ، وقد نحصل على عمولة دون أي تكلفة إضافية عليك.</div>
+<script>(function(){var q=document.getElementById("q"),cs=document.querySelectorAll("#cities .card");q.addEventListener("input",function(){var v=q.value.trim().toLowerCase();cs.forEach(function(c){c.style.display=(!v||c.textContent.toLowerCase().indexOf(v)>-1)?"":"none"})})})();</script>
+<footer><p>المعلومات عامة وقد تتغير، ولسنا وكالة سفر ولا مزوّد خدمات سياحية.</p><p><a href="privacy.html#ar">الخصوصية والشروط</a><a href="mailto:Rahhalegypt@gmail.com">Rahhalegypt@gmail.com</a></p><p>© 2026 رحّال · Mohamad Badawy Hafz</p></footer>
+</div>
 </body>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://midohafz.github.io/rahhal/sitemap.xml
