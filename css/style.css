@@ -1,0 +1,142 @@
+/* تنسيقات عامة للموقع */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    direction: inherit;
+}
+
+/* الهيدر وشريط التنقل والشعار */
+.main-header {
+    background-color: #1a252f;
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.lang-switcher a, .lang-switcher strong {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+.lang-switcher a:hover {
+    text-decoration: underline;
+    color: #3498db;
+}
+
+/* المحتوى الرئيسي وواجهة المدينة */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.city-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.city-hero h2 {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.city-hero p {
+    font-size: 16px;
+    color: #7f8c8d;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* شبكة بطاقات الفنادق */
+.hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.hotel-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.hotel-card h3 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.hotel-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* زر الحجز (Affiliate CTA Button) */
+.btn-booking {
+    display: inline-block;
+    background-color: #e67e22;
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-booking:hover {
+    background-color: #d35400;
+}
+
+/* دعم الشاشات الصغيرة والمتوسطة */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .city-hero h2 {
+        font-size: 26px;
+    }
+}
