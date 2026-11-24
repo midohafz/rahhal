@@ -7,17 +7,22 @@
 <meta name="description" content="Гид по городам, отелям и авиакомпаниям Египта на трёх языках: арабском, английском и русском.">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#0b6e7a">
+<meta name="google-site-verification" content="1WTM6wdSjRsbukk4V3iHtXGYbWYMCrQOAeq6XVO1W2Q">
 <link rel="canonical" href="https://midohafz.github.io/rahhal/ru/index.html">
 <link rel="alternate" hreflang="ar" href="https://midohafz.github.io/rahhal/index.html">
 <link rel="alternate" hreflang="en" href="https://midohafz.github.io/rahhal/en/index.html">
 <link rel="alternate" hreflang="ru" href="https://midohafz.github.io/rahhal/ru/index.html">
 <link rel="alternate" hreflang="x-default" href="https://midohafz.github.io/rahhal/index.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b6e7a%27/%3E%3Cpath d=%27M8 52L32 14l24 38z%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="48x48" href="../icons/favicon-48.png">
+<meta property="og:image" content="https://midohafz.github.io/rahhal/images/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Раххаль | Гид по городам и отелям Египта">
 <meta property="og:description" content="Гид по городам, отелям и авиакомпаниям Египта на трёх языках: арабском, английском и русском.">
 <meta property="og:url" content="https://midohafz.github.io/rahhal/ru/index.html">
 <meta property="og:locale" content="ru_RU">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
 <style>
 :root{--bg:#f4f7f8;--surface:#fff;--ink:#12262e;--muted:#566b73;--line:#d8e2e6;--brand:#0b6e7a;--brand-ink:#fff;--soft:#e0f0f2;--warn:#fff4d6;--warn-ink:#4a3a00;--hero1:#0b4f63;--hero2:#0b6e7a}
 @media (prefers-color-scheme:dark){:root{--bg:#0e1a20;--surface:#16262e;--ink:#e8f1f4;--muted:#9bb0b8;--line:#27404a;--brand:#4cc3d0;--brand-ink:#06242a;--soft:#1b3a42;--warn:#3a3210;--warn-ink:#f1e3a8;--hero1:#0b3a48;--hero2:#0e5560}}
@@ -29,7 +34,14 @@ a{color:var(--brand)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 .bar{background:var(--surface);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:10px;padding-bottom:10px;gap:12px;flex-wrap:wrap}
-.bar a.brand{font-weight:800;font-size:20px;text-decoration:none}
+.bar a.brand{font-weight:800;font-size:20px;text-decoration:none;display:inline-flex;align-items:center;gap:10px}.logo{border-radius:50%}
+.hero.ph{position:relative;padding:0;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;background:#0b3a48}
+.hero.ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero.ph:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.05) 70%)}
+.hero.ph .txt{position:relative;z-index:2;padding:22px}
+.badge{position:absolute;top:10px;inset-inline-end:12px;z-index:3;font-size:12px;background:rgba(0,0,0,.55);color:#fff;padding:2px 10px;border-radius:8px}
+.card img.art{display:block;width:100%;height:110px;object-fit:cover}.card svg.art{height:110px}
+.cityhero{position:relative;margin:14px 0;border-radius:16px;overflow:hidden}.cityhero img{display:block;width:100%;height:auto}
 .langs a{display:inline-block;margin-inline-start:6px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:15px;color:var(--ink)}
 .langs a[aria-current="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:700}
 .hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:18px;padding:28px 22px 0;margin:18px 0;overflow:hidden}
@@ -54,27 +66,41 @@ html[dir=rtl] .en{text-align:right}
 .card p{margin:6px 0 12px;color:var(--muted)}
 .search{width:100%;max-width:520px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit;margin:8px 0 18px}
 .back{font-size:15px}
+.slots{list-style:none;padding:0}.slots li{margin:.45em 0}.slots b{color:var(--brand)}
+/*faq*/.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:10px 0}.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--brand);font-weight:800}.faq details[open] summary::after{content:"\2212"}.faq details p{margin:8px 0 2px;color:var(--muted)}
 footer{margin-top:44px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 footer a{margin-inline-end:10px}
 @media (max-width:520px){.hero h1{font-size:27px}}
 </style>
 </head>
 <body>
-<div class="bar"><div class="wrap"><a class="brand" href="index.html">Раххаль</a><nav class="langs" aria-label="Язык"><a href="../index.html" hreflang="ar" lang="ar">العربية</a><a href="../en/index.html" hreflang="en" lang="en">English</a><a href="index.html" hreflang="ru" lang="ru" aria-current="true">Русский</a></nav></div></div>
+<div class="bar"><div class="wrap"><a class="brand" href="index.html"><img class="logo" src="../icons/logo-96.png" alt="" width="40" height="40"><span>Раххаль</span></a><nav class="langs" aria-label="Язык"><a href="../index.html" hreflang="ar" lang="ar">العربية</a><a href="../en/index.html" hreflang="en" lang="en">English</a><a href="index.html" hreflang="ru" lang="ru" aria-current="true">Русский</a></nav></div></div>
 <div class="wrap">
-<section class="hero"><h1>Раххаль</h1><p>Ваш гид по городам Египта, отелям и авиаперелётам</p><p><strong>Добро пожаловать в Египет</strong></p><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#ffffff" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#ffffff" fill-opacity=".55"/><path d="M20 64L80 14l60 50zM100 64l50-34 50 34zM170 64l40-26 40 26z" fill="#ffffff" fill-opacity=".75"/></svg></section>
+<section class="hero ph"><img src="../images/cairo.webp" alt="Каир: пирамиды Гизы, Сфинкс, мечеть Цитадели и Нил (иллюстративное изображение)" width="1200" height="675" fetchpriority="high"><span class="badge">Иллюстративное изображение</span><div class="txt"><h1>Раххаль</h1><p>Ваш гид по городам Египта, отелям и авиаперелётам</p><p><strong>Добро пожаловать в Египет</strong></p></div></section>
+<p><button class="btn" id="inst" hidden type="button">Установить приложение</button></p>
 <h2>Города и достопримечательности Египта</h2>
 <input class="search" id="q" type="search" placeholder="Найти город" aria-label="Найти город">
 <div class="grid" id="cities">
-<article class="card"><a href="cairo-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#b5651d" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#b5651d" fill-opacity=".55"/><path d="M20 64L80 14l60 50zM100 64l50-34 50 34zM170 64l40-26 40 26z" fill="#b5651d" fill-opacity=".75"/></svg></a><div class="body"><h3>Каир</h3><p>Аль-Азхар, Хан Эль-Халили, Цитадель и Пирамиды.</p><a class="btn" href="cairo-hotels.html">Гид по отелям — Каир</a></div></article>
-<article class="card"><a href="luxor-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#8a3b5c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#8a3b5c" fill-opacity=".55"/><path d="M30 20h240v8H30zM44 28h14v36H44zM84 28h14v36H84zM124 28h14v36h-14zM164 28h14v36h-14zM204 28h14v36h-14zM244 28h14v36h-14z" fill="#8a3b5c" fill-opacity=".75"/></svg></a><div class="body"><h3>Луксор</h3><p>Карнакский храм, Луксорский храм и Долина Царей.</p><a class="btn" href="luxor-hotels.html">Гид по отелям — Луксор</a></div></article>
-<article class="card"><a href="aswan-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#2d5fa8" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#2d5fa8" fill-opacity=".55"/><path d="M30 20h240v8H30zM44 28h14v36H44zM84 28h14v36H84zM124 28h14v36h-14zM164 28h14v36h-14zM204 28h14v36h-14zM244 28h14v36h-14z" fill="#2d5fa8" fill-opacity=".75"/></svg></a><div class="body"><h3>Асуан</h3><p>Храм Филе, Абу-Симбел и Нубийская деревня.</p><a class="btn" href="aswan-hotels.html">Гид по отелям — Асуан</a></div></article>
-<article class="card"><a href="sharm-and-taba-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>Шарм-эль-Шейх</h3><p>Рас-Мохаммед, Наама Бей и Сохо Сквер.</p><a class="btn" href="sharm-and-taba-hotels.html">Гид по отелям — Шарм-эль-Шейх</a></div></article>
-<article class="card"><a href="hurghada-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>Хургада</h3><p>Остров Гифтун, Марина Эль-Гуна и Аквариум.</p><a class="btn" href="hurghada-hotels.html">Гид по отелям — Хургада</a></div></article>
-<article class="card"><a href="alexandria-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#3b7a57" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#3b7a57" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".8"/></svg></a><div class="body"><h3>Александрия</h3><p>Цитадель Кайтбей, Библиотека и Монтаза.</p><a class="btn" href="alexandria-hotels.html">Гид по отелям — Александрия</a></div></article>
-<article class="card"><a href="marsa-alam-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#0b7f9c" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#0b7f9c" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#0b7f9c" fill-opacity=".8"/></svg></a><div class="body"><h3>Марса-Алам</h3><p>Риф Сатая и пляж Абу-Дабаб.</p><a class="btn" href="marsa-alam-hotels.html">Гид по отелям — Марса-Алам</a></div></article>
-<article class="card"><a href="el-alamein-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><svg class="art" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="300" height="64" fill="#3b7a57" fill-opacity=".14"/><circle cx="250" cy="18" r="9" fill="#3b7a57" fill-opacity=".55"/><path d="M0 44q25-10 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".6"/><path d="M0 54q25-8 50 0t50 0 50 0 50 0 50 0 50 0V64H0z" fill="#3b7a57" fill-opacity=".8"/></svg></a><div class="body"><h3>Эль-Аламейн</h3><p>Башни Аламейн и чистые пляжи.</p><a class="btn" href="el-alamein-hotels.html">Гид по отелям — Эль-Аламейн</a></div></article>
+<article class="card"><a href="cairo-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/cairo.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Каир</h3><p>Аль-Азхар, Хан Эль-Халили, Цитадель и Пирамиды.</p><a class="btn" href="cairo-hotels.html">Гид по отелям — Каир</a></div></article>
+<article class="card"><a href="luxor-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/luxor.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Луксор</h3><p>Карнакский храм, Луксорский храм и Долина Царей.</p><a class="btn" href="luxor-hotels.html">Гид по отелям — Луксор</a></div></article>
+<article class="card"><a href="aswan-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/aswan.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Асуан</h3><p>Храм Филе, Абу-Симбел и Нубийская деревня.</p><a class="btn" href="aswan-hotels.html">Гид по отелям — Асуан</a></div></article>
+<article class="card"><a href="sharm-and-taba-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/sharm.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Шарм-эль-Шейх</h3><p>Рас-Мохаммед, Наама Бей и Сохо Сквер.</p><a class="btn" href="sharm-and-taba-hotels.html">Гид по отелям — Шарм-эль-Шейх</a></div></article>
+<article class="card"><a href="hurghada-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/hurghada.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Хургада</h3><p>Остров Гифтун и Марина Эль-Гуна.</p><a class="btn" href="hurghada-hotels.html">Гид по отелям — Хургада</a></div></article>
+<article class="card"><a href="alexandria-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/alex.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Александрия</h3><p>Цитадель Кайтбей, Библиотека и Монтаза.</p><a class="btn" href="alexandria-hotels.html">Гид по отелям — Александрия</a></div></article>
+<article class="card"><a href="marsa-alam-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/marsa.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Марса-Алам</h3><p>Риф Сатая и пляж Абу-Дабаб.</p><a class="btn" href="marsa-alam-hotels.html">Гид по отелям — Марса-Алам</a></div></article>
+<article class="card"><a href="el-alamein-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/alamein.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Эль-Аламейн</h3><p>Башни Аламейн и чистые пляжи.</p><a class="btn" href="el-alamein-hotels.html">Гид по отелям — Эль-Аламейн</a></div></article>
+<article class="card"><a href="siwa-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/siwa.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Оазис Сива</h3><p>Источник Клеопатры, солёные озёра и Гора мёртвых.</p><a class="btn" href="siwa-hotels.html">Гид по отелям — Сива</a></div></article>
+<article class="card"><a href="dahab-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/dahab.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Дахаб</h3><p>тихий залив Дахаба, место Машраба и дайв-центры на пляже.</p><a class="btn" href="dahab-hotels.html">Гид по отелям — Дахаб</a></div></article>
+<article class="card"><a href="saint-catherine-hotels.html" style="text-decoration:none" tabindex="-1" aria-hidden="true"><img class="art" src="../images/catherine.webp" alt="" loading="lazy" width="1200" height="675"></a><div class="body"><h3>Святая Екатерина</h3><p>Монастырь Святой Екатерины, гора Моисея и окружающий заповедник.</p><a class="btn" href="saint-catherine-hotels.html">Гид по отелям — Святая Екатерина</a></div></article>
 </div>
+<h2>Маршруты</h2>
+<p>Готовые планы на 2–5 дней на основе достопримечательностей из наших гидов по городам.</p>
+<div class="grid">
+<article class="card"><div class="body"><h3>Каир и Гиза за 3 дня</h3><div class="tags"><span>3 дня</span></div><p>Пирамиды и Большой египетский музей, затем исламский Каир и Нил.</p><a class="btn" href="trip-cairo-3-days.html">Открыть маршрут</a></div></article>
+<article class="card"><div class="body"><h3>Луксор за 2 дня</h3><div class="tags"><span>2 дня</span></div><p>Долина царей и храм Хатшепсут, затем храмы Луксора и Карнака.</p><a class="btn" href="trip-luxor-2-days.html">Открыть маршрут</a></div></article>
+<article class="card"><div class="body"><h3>Асуан за 2 дня</h3><div class="tags"><span>2 дня</span></div><p>Храм Филе и нубийская деревня, затем поездка на день в Абу-Симбел.</p><a class="btn" href="trip-aswan-2-days.html">Открыть маршрут</a></div></article>
+</div>
+<p><a class="btn" href="itineraries.html">Все маршруты</a></p>
 <h2>Авиаперелёты</h2>
 <p>Мы не продаём авиабилеты. Это официальные сайты авиакомпаний для проверки рейсов и цен.</p>
 <div class="grid">
@@ -87,8 +113,9 @@ footer a{margin-inline-end:10px}
 <p>У вас лицензированная туристическая или транспортная компания? Напишите нам, чтобы обсудить сотрудничество.</p>
 <p><a class="btn" href="mailto:Rahhalegypt@gmail.com">Связаться с нами</a></p>
 <div class="note" role="note">Ссылки для бронирования на страницах отелей — партнёрские ссылки Booking.com через сеть CJ; мы можем получить комиссию без дополнительных затрат для вас.</div>
-<script>(function(){var q=document.getElementById("q"),cs=document.querySelectorAll("#cities .card");q.addEventListener("input",function(){var v=q.value.trim().toLowerCase();cs.forEach(function(c){c.style.display=(!v||c.textContent.toLowerCase().indexOf(v)>-1)?"":"none"})})})();</script>
-<footer><p>Информация общая и может меняться. Мы не турагентство и не поставщик туристических услуг.</p><p><a href="../privacy.html#ru">Конфиденциальность и условия</a><a href="mailto:Rahhalegypt@gmail.com">Rahhalegypt@gmail.com</a></p><p>© 2026 Раххаль · Mohamad Badawy Hafz</p></footer>
+<script>(function(){var q=document.getElementById("q"),cs=document.querySelectorAll("#cities .card");q.addEventListener("input",function(){var v=q.value.trim().toLowerCase();cs.forEach(function(c){c.style.display=(!v||c.textContent.toLowerCase().indexOf(v)>-1)?"":"none"})});var d;addEventListener("beforeinstallprompt",function(e){e.preventDefault();d=e;var b=document.getElementById("inst");b.hidden=false;b.onclick=function(){d.prompt();b.hidden=true}})})();</script>
+<footer><p>Информация общая и может меняться. Мы не турагентство и не поставщик туристических услуг. Некоторые изображения на сайте иллюстративные (созданы ИИ) и не являются фотографиями мест; они помечены «Иллюстративное изображение».</p><p><a href="../privacy.html#ru">Конфиденциальность и условия</a><a href="mailto:Rahhalegypt@gmail.com">Rahhalegypt@gmail.com</a></p><p>© 2026 Раххаль · Mohamad Badawy Hafz</p></footer>
 </div>
+<script>if("serviceWorker"in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js")["catch"](function(){})})}</script>
 </body>
 </html>
