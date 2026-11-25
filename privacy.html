@@ -26,7 +26,7 @@ footer{font-size:14px;color:var(--muted);margin-top:30px}
 <a href="index.html">← رحّال / Rahhal</a>
 <h1>الخصوصية والشروط · Privacy and Terms</h1>
 <p class="langs"><a href="#ar">العربية</a><a href="#en">English</a><a href="#ru">Русский</a></p>
-<p>آخر تحديث / Last updated / Обновлено: 24.11.2026</p>
+<p>آخر تحديث / Last updated / Обновлено: 25.11.2026</p>
 
 <section id="ar" lang="ar" dir="rtl">
 <h2>الخصوصية والشروط</h2>
@@ -42,7 +42,7 @@ footer{font-size:14px;color:var(--muted);margin-top:30px}
 <p>المعلومات عامة وقد تتغير: الأسعار والمواعيد وأسماء الفنادق وإداراتها. تحقق منها من الجهة نفسها قبل أي حجز. لا نضمن اكتمالها أو دقتها.</p>
 <h2>المسؤولية</h2>
 <p>لسنا وكالة سفر ولا مزوّد خدمات سياحية، ولا نتحمل مسؤولية خدمات الجهات الخارجية أو جودتها أو إلغائها.</p>
-<h2>حقوقك</h2>
+<h2>الشريط الصغير</h2><p>يعرض الموقع شريطاً صغيراً في الأسفل لإعلامك بروابط الشراكة. عند الضغط على «فهمت» نحفظ هذا الاختيار في متصفحك فقط (localStorage) حتى لا يظهر الشريط مرة أخرى، ولا يصل هذا الاختيار إلينا.</p><h2>حقوقك</h2>
 <p>يمكنك طلب حذف أي رسالة أرسلتها لنا أو الاستفسار عن بياناتك بمراسلتنا على البريد أعلاه.</p>
 <h2>التحديثات</h2>
 <p>قد نعدّل هذه الصفحة، والنسخة الأحدث هي المعتمدة.</p>
@@ -62,7 +62,7 @@ footer{font-size:14px;color:var(--muted);margin-top:30px}
 <p>The information is general and may change, including prices, schedules, and hotel names and management. Check with the provider before any booking. We do not guarantee that it is complete or accurate.</p>
 <h2>Responsibility</h2>
 <p>We are not a travel agency or a tourism service provider, and we are not responsible for third-party services, their quality, or cancellations.</p>
-<h2>Your rights</h2>
+<h2>The notice bar</h2><p>The site shows a small bar at the bottom to inform you about partner links. When you press “Got it”, we store that choice only in your browser (localStorage) so the bar does not reappear. This choice is not sent to us.</p><h2>Your rights</h2>
 <p>You can ask us to delete any message you sent or ask about your data by emailing the address above.</p>
 <h2>Updates</h2>
 <p>We may change this page, and the latest version applies.</p>
@@ -82,7 +82,7 @@ footer{font-size:14px;color:var(--muted);margin-top:30px}
 <p>Информация общая и может меняться: цены, расписания, названия и управление отелей. Перед бронированием проверьте её у поставщика. Мы не гарантируем её полноту и точность.</p>
 <h2>Ответственность</h2>
 <p>Мы не турагентство и не поставщик туристических услуг и не отвечаем за услуги третьих лиц, их качество или отмену.</p>
-<h2>Ваши права</h2>
+<h2>Информационная полоса</h2><p>Внизу сайта показывается небольшая полоса с информацией о партнёрских ссылках. После нажатия «Понятно» мы сохраняем этот выбор только в вашем браузере (localStorage), чтобы полоса не появлялась снова. Этот выбор нам не передаётся.</p><h2>Ваши права</h2>
 <p>Вы можете попросить удалить отправленное нам письмо или задать вопрос о своих данных, написав на адрес выше.</p>
 <h2>Обновления</h2>
 <p>Мы можем изменять эту страницу; действует последняя версия.</p>
@@ -90,5 +90,5 @@ footer{font-size:14px;color:var(--muted);margin-top:30px}
 
 <footer>© 2026 رحّال / Rahhal · Mohamad Badawy Hafz</footer>
 </div>
-</body>
+<div id="rahhal-notice" role="region" aria-label="الخصوصية" style="position:fixed;bottom:0;inset-inline:0;background:#12262e;color:#fff;padding:10px 14px;font-size:14px;line-height:1.5;z-index:50;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap"><span style="flex:1 1 260px">هذا الموقع يعرض روابط شراكة مع Booking.com وجهات أخرى، وقد تضع هذه الجهات ملفات تعريف بعد النقر. لا نستخدم تحليلات أو إعلانات.</span><span style="white-space:nowrap"><a href="privacy.html#ar" style="color:#9fe0e8">الخصوصية</a> <button id="rn-ok" type="button" style="margin-inline-start:8px;padding:5px 12px;border-radius:8px;border:0;background:#4cc3d0;color:#06242a;font-weight:700;cursor:pointer">فهمت</button></span></div><script>(function(){var b=document.getElementById('rahhal-notice');try{if(localStorage.getItem('rahhal-notice')==='1'){b.remove();return}}catch(e){}document.getElementById('rn-ok').onclick=function(){try{localStorage.setItem('rahhal-notice','1')}catch(e){}b.remove()}})();</script></body>
 </html>
